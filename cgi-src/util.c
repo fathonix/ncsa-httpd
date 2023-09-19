@@ -1,7 +1,4 @@
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include "util.h"
 
 #define LF 10
 #define CR 13
@@ -54,7 +51,6 @@ char *fmakeword(FILE *f, char stop, int *cl) {
         if((word[ll] == stop) || (feof(f)) || (!(*cl))) {
             if(word[ll] != stop) ll++;
             word[ll] = '\0';
-	    word = (char *) realloc(word, ll+1);
             return word;
         }
         ++ll;
@@ -139,7 +135,7 @@ void escape_shell_cmd(char *cmd) {
 
     l=strlen(cmd);
     for(x=0;cmd[x];x++) {
-        if(ind("&;`'\"|*?~<>^()[]{}$\\\x0A",cmd[x]) != -1){
+        if(ind("&;`'\"|*?~<>^()[]{}$\\",cmd[x]) != -1){
             for(y=l+1;y>x;y--)
                 cmd[y] = cmd[y-1];
             l++; /* length has been increased */

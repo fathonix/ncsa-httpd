@@ -1,12 +1,3 @@
-/*
-** Original code by Rob McCool, robm@ncsa.uiuc.edu.
-** 
-** 06/28/95: Carlos Varela, cvarela@isr.co.jp
-** 1.1 : Additional error message if password file not changed.
-**       By default allows password addition, better feedback to "wizard".
-**
-*/
-
 #include <sys/types.h>
 #include <stdio.h>
 #include <string.h>
@@ -15,7 +6,7 @@
 #include <time.h>
 
 #define USER_FILE "/usr/local/etc/httpd/conf/.htpasswd"
-#define WIZARD "webmaster"
+#define WIZARD "surobm"
 
 char *makeword(char *line, char stop);
 char *fmakeword(FILE *f, char stop, int *len);
@@ -85,7 +76,7 @@ main(int argc, char *argv[]) {
     user=NULL;
     p1=NULL;
     p2=NULL;
-    create=1;
+    create=0;
     for(x=0;cl && (!feof(stdin));x++) {
         t1 = fmakeword(stdin,'&',&cl);
         t2 = makeword(t1,'=');
@@ -133,7 +124,7 @@ main(int argc, char *argv[]) {
     if(strcmp(p1,p2)) {
         printf("<TITLE>Password Mismatch</TITLE>");
         printf("<H1>Password Mismatch</H1>");
-        printf("The two copies of your password do not match. Please");
+        printf("The two copies of your the password do not match. Please");
         printf(" try again.");
         exit(1);
     }
@@ -172,20 +163,10 @@ main(int argc, char *argv[]) {
     fclose(f);
     fclose(tfp);
     sprintf(command,"cp %s %s",tn,USER_FILE);
-    if (system(command)) {
-	fprintf(stderr,
-		"Could not overwrite passwd file.\n",USER_FILE);
-	exit(1);
-    }
+    system(command);
     unlink(tn);
-    if ((!found) && (create)) {
-	printf("<TITLE>Successful Addition</TITLE>");
-	printf("<H1>Successful Addition</H1>");
-	printf("Your new user/password combination has been successfully added.<P>");
-    } else {
-	printf("<TITLE>Successful Change</TITLE>");
-	printf("<H1>Successful Change</H1>");
-	printf("Your password has been successfully changed.<P>");
-    }
+    printf("<TITLE>Successful Change</TITLE>");
+    printf("<H1>Successful Change</H1>");
+    printf("Your password has been successfully changed.<P>");
     exit(0);
 }

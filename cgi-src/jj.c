@@ -7,7 +7,6 @@
 
 
 #include <stdio.h>
-#include <string.h>
 #ifndef NO_STDLIB_H
 #include <stdlib.h>
 #else
@@ -15,12 +14,12 @@ char *getenv();
 #endif
 
 #if 1
-#define JJ_FAX "JIMMY_JOHNS_5555680@fax.uiuc.edu"
+#define JJ_FAX "JIMMY_JOHNS_3440603@fax.uiuc.edu"
 #else
-#define JJ_FAX "wow@foo.bar.com"
+#define JJ_FAX "robm@imsa.edu"
 #endif
 
-#define PASSWORD "HTTPdRocKs"
+#define PASSWORD "SDGROCKS"
 #define LF 10
 
 void getword(char *word, char *line, char stop);

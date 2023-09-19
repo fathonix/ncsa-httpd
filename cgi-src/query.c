@@ -7,7 +7,6 @@
 #else
 char *getenv();
 #endif
-#include <string.h>
 
 typedef struct {
     char name[128];

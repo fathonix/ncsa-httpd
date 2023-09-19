@@ -4,8 +4,6 @@
 #else
 char *getenv();
 #endif
-#include <string.h>
-#include "util.h"
 
 #define	LF	10
 #define HTML_BREAK	printf("<P>%c", LF);
